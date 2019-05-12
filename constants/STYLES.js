@@ -3,7 +3,6 @@ const COLORS = {
   WHITE: '#fff',
   WHITE_OPACITY5: 'rgba(255,255,255,0.5)',
   WHITE_OPACITY3: 'rgba(255,255,255,0.3)',
-  CELSIUS: '#3F51AB', // prov: change name!
   DARK_HEADER: '#1F2E3D',
   DARK_BACKGROUND: '#151E27',
 
@@ -18,7 +17,7 @@ const COLORS = {
   DARK_GRAY6: 'rgba(61, 72, 83, 0.6)',
   DARK_GRAY7: 'rgba(61, 72, 83, 0.7)',
   DARK_GRAY_OPACITY: 'rgba(61, 72, 83, 0.15)',
-  CELSIUS_BLUE: '#4156A6',
+  MAIN_COLOR: '#38bb8d',
   GREEN: '#4fb895',
   GREEN_OPACITY: 'rgba(79,184,149,0.15)',
   ORANGE: '#e19f30',
@@ -62,7 +61,8 @@ export default {
   SHADOW_STYLES
 }
 
-// export {
-//   COLORS,
-//   FONTSIZE
-// }
+export {
+  COLORS,
+  FONTSIZE,
+  imageSizes
+}

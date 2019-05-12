@@ -16,9 +16,31 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "android":{
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_CONTACTS"
+      ],
+    },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationAlwaysUsageDescription": "We'd like to use your location data in order to determine what country you're from - is that ok?",
+        "NSCameraUsageDescription": "Camera is used to capture identification documents for verification and for profile settings.",
+        "NSPhotoLibraryUsageDescription": "Photos are accessed for identification verification and for your profile photo.",
+        "NSLocationWhenInUseUsageDescription": "We'd like to use your location data in order to determine what country you're from - is that ok?",
+        "LSApplicationQueriesSchemes": [
+          "fbapi",
+          "fb-messenger-share-api",
+          "fbauth2",
+          "fbshareextension"
+        ]
+      }
     },
     "extra": {
       "API_URL": "https://api.smartFarm.com"

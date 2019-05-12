@@ -5,12 +5,14 @@ import user from './user/userReducer'
 import nav from './nav/navReducer'
 import forms from './forms/formsReducer'
 import api from './api/apiReducer'
+import camera from './camera/cameraReducer'
 
 const appReducers = combineReducers({
   user,
   nav,
   forms,
-  api
+  api,
+  camera
 })
 
 function rootReducer (state, action) {

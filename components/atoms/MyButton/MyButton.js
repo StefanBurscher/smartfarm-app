@@ -68,9 +68,9 @@ class MyButton extends Component {
 
   renderButton = () => {
     const { children, style } = this.props;
-    const celBtnStyle = MyButtonStyle;
-    const buttonStyle = this.getButtonStyle(celBtnStyle);
-    const titleStyle = this.getTitleStyle(celBtnStyle);
+    const myBtnStyle = MyButtonStyle;
+    const buttonStyle = this.getButtonStyle(myBtnStyle);
+    const titleStyle = this.getTitleStyle(myBtnStyle);
 
     return (
       <View style={[buttonStyle, style]}>

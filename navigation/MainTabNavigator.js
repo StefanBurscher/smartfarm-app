@@ -1,60 +1,122 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from 'react'
+import { Platform } from 'react-native'
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  BottomTabBar
+} from 'react-navigation'
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../components/screens/HomeScreen';
-import LinksScreen from '../components/screens/LinksScreen';
-import SettingsScreen from '../components/screens/SettingsScreen';
+import TabBarIcon from '../components/TabBarIcon'
+import HomeScreen from '../components/screens/Home/HomeScreen'
+import LinksScreen from '../components/screens/LinksScreen'
+import { defaultNavigationOptions, transitionConfig } from './navigationConfig'
+import STYLES from '../constants/STYLES'
+import CameraScreen from '../components/screens/CameraScreen/CameraScreen';
+import LandsScreen from '../components/screens/Lands/LandsScreen';
+import ReportDetails from '../components/screens/ReportDetails/ReportDetails';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
+const TabBarComponent = props => <BottomTabBar {...props} />
+
+const HomeStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Lands: LandsScreen,
+    ReportDetails: ReportDetails
+  },
+  {
+    defaultNavigationOptions: {
+      ...defaultNavigationOptions
+    },
+    transitionConfig
+  }
+)
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Lands',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
+      name={Platform.OS === 'ios' ? `ios-leaf` : 'md-leaf-circle'}
     />
-  ),
-};
+  )
+}
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
+const LinksStack = createStackNavigator(
+  {
+    Links: LinksScreen
+  },
+  {
+    defaultNavigationOptions: {
+      ...defaultNavigationOptions
+    },
+    transitionConfig
+  }
+)
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+  tabBarLabel: 'Analitycs',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-analytics' : 'md-analytics'}
     />
-  ),
-};
+  )
+}
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
+const CameraStack = createStackNavigator(
+  {
+    Camera: CameraScreen
+  },
+  {
+    defaultNavigationOptions: {
+      ...defaultNavigationOptions
+    },
+    transitionConfig
+  }
+)
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+CameraStack.navigationOptions = {
+  tabBarLabel: 'Disease check',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={Platform.OS === 'ios' ? 'ios-camera' : 'md-camera'}
     />
-  ),
-};
+  )
+}
 
-export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+export default createBottomTabNavigator(
+  {
+    HomeStack,
+    LinksStack,
+    CameraStack
+  },
+  {
+    tabBarComponent: props => (
+      <TabBarComponent {...props} style={tabBarStyle} />
+    ),
+    tabBarOptions: {
+      activeTintColor: STYLES.COLORS.MAIN_COLOR,
+      style: {
+        // TabBar background
+        borderColor: 'red'
+      }
+    }
+  }
+)
+
+const tabBarStyle = {
+  borderTopWidth: 0,
+  ...Platform.select({
+    android: {
+      borderColor: '#E9E9E9',
+      borderTopmWidth: 2
+    },
+    ios: {
+      shadowOffset: { width: 0, height: -3 },
+      shadowOpacity: 0.03,
+      shadowRadius: 3,
+      elevation: 3
+    }
+  })
+}

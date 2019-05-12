@@ -5,7 +5,7 @@ import { Text } from 'react-native'
 import { getMargins, getScaledFont } from '../../../utils/styles-util'
 import STYLES from '../../../constants/STYLES'
 
-class CelText extends Component {
+class MyText extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7']),
     weight: PropTypes.oneOf(['regular', 'bold']),
@@ -56,4 +56,4 @@ class CelText extends Component {
   }
 }
 
-export default CelText
+export default MyText

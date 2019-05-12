@@ -2,14 +2,14 @@
 import { getScaledFont } from '../../../utils/styles-util'
 import STYLES from '../../../constants/STYLES'
 
-const CelButtonStyle = {
+const MyButtonStyle = {
   container: {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     opacity: 1,
-    backgroundColor: STYLES.COLORS.CELSIUS_BLUE,
-    borderColor: STYLES.COLORS.CELSIUS_BLUE
+    backgroundColor: STYLES.COLORS.MAIN_COLOR,
+    borderColor: STYLES.COLORS.MAIN_COLOR
   },
   mediumContainer: {
     borderRadius: 60,
@@ -53,17 +53,17 @@ const CelButtonStyle = {
   ghostButton: {
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: STYLES.COLORS.CELSIUS_BLUE
+    borderColor: STYLES.COLORS.MAIN_COLOR
   },
   ghostTitle: {
-    color: STYLES.COLORS.CELSIUS_BLUE
+    color: STYLES.COLORS.MAIN_COLOR
   },
   basicTitle: {
-    color: STYLES.COLORS.CELSIUS_BLUE
+    color: STYLES.COLORS.MAIN_COLOR
   },
   disabledTitleColor: {
-    color: STYLES.COLORS.CELSIUS_BLUE
+    color: STYLES.COLORS.MAIN_COLOR
   }
 }
 
-export default CelButtonStyle
+export default MyButtonStyle

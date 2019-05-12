@@ -19,17 +19,11 @@ import { KEYBOARD_TYPE } from '../../../constants/UI'
   }),
   dispatch => ({ actions: bindActionCreators(appActions, dispatch) })
 )
-class SignInScreen extends React.Component {
+class SignUpScreen extends React.Component {
   static navigationOptions = () => ({
     headerSameColor: true,
     right: 'signup'
   })
-
-  loginUser = () => {
-    const { actions } = this.props
-    actions.navigateTo("Home")
-  }
-
   render () {
     const { formData, callsInProgress, actions } = this.props
     const loginLoading = apiUtil.areCallsInProgress(
@@ -70,11 +64,11 @@ class SignInScreen extends React.Component {
           onPress={this.loginUser}
           loading={loginLoading}
         >
-          Log in
+          Register
         </MyButton>
       </RegularLayout>
     )
   }
 }
 
-export default SignInScreen
+export default SignUpScreen

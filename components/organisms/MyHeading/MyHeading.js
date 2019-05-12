@@ -1,11 +1,18 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { View, SafeAreaView, StatusBar } from 'react-native'
 
 import MyHeadingStyle from './MyHeading.styles'
+import * as appActions from '../../../redux/actions'
 import { getPadding } from '../../../utils/styles-util'
 import MyButton from '../../atoms/MyButton/MyButton'
 import MyText from '../../atoms/MyText/MyText'
+import { bindActionCreators } from 'redux'
 
+@connect(
+  () => ({}),
+  dispatch => ({ actions: bindActionCreators(appActions, dispatch) })
+)
 class MyHeading extends Component {
   getLeftContent = sceneProps => {
     const { hideBack } = sceneProps
@@ -36,7 +43,7 @@ class MyHeading extends Component {
         <MyButton
           basic
           onPress={() => {
-            this.props.actions.navigateTo('RegisterInitial')
+            this.props.actions.navigateTo('SignUp')
           }}
         >
           Sign up
@@ -72,7 +79,6 @@ class MyHeading extends Component {
           <MyText
             style={style.headerTitle}
             align='center'
-            weight='medium'
             type='H3'
           >
             {title || ''}

@@ -80,21 +80,8 @@ function uploadImage (photo) {
   return async (dispatch, getState) => {
     try {
       const res = await landsService.uploadImage(photo)
-      console.log('res', res)
-      alert(
-        'Alert Title',
-        'My Alert Msg',
-        [
-          {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        {cancelable: false},
-      );
+      // console.log('res', JSON.stringify(res.data))
+      alert(res.data.replace(new RegExp('_', 'g'), ' '))
       dispatch({
         type: ACTIONS.TAKE_CAMERA_PHOTO,
         callName: API.TAKE_CAMERA_PHOTO,

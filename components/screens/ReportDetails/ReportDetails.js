@@ -58,12 +58,12 @@ export default class ReportDetails extends React.Component {
     const time = moment(reportDetails.date).isSame(moment(), 'day')
       ? moment(reportDetails.date, 'DD.MM.YYYY').format('HH:mm')
       : moment(reportDetails.date, 'DD.MM.YYYY').format('DD MMM YYYY')
-
+    console.log('reportDetails', reportDetails)
     return (
       <RegularLayout>
         <>
           <MyText type="H2" align="center" margin="0 0 20 0">
-            {reportDetails.name}
+            {reportDetails.parent.name}
           </MyText>
           <Image
             style={{ flex: 1, height: 200, marginBottom: 20, borderRadius: 8 }}

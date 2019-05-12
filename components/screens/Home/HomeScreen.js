@@ -10,7 +10,6 @@ import Card from '../../atoms/Card/Card'
 import HomeScreenStyle from './HomeScreen.styles'
 import TabBarIcon from '../../TabBarIcon'
 
-
 @connect(
   state => ({
     allLands: state.lands.allLands,
@@ -63,12 +62,12 @@ export default class HomeScreen extends React.Component {
               source={{ uri: land.image }}
             />
           </View>
-          <View style={{ flex: 1, padding: 12 }}>
+          <View style={{ flex: 1, padding: 12, justifyContent: 'center' }}>
             <MyText type="H3" margin={'0 0 0 5'}>
               {land.name}
             </MyText>
-            <MyText type="H5" margin={'0 0 0 5'}>
-              Add lands
+            <MyText type="H6" margin={'0 0 0 5'}>
+              {land.location}
             </MyText>
           </View>
         </View>

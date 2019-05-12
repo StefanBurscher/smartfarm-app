@@ -3,7 +3,7 @@ import ACTIONS from '../../constants/ACTIONS'
 const initialState = {
   allLands: [],
   landDetails: { reports: [] },
-  reportDetails: {},
+  reportDetails: { parent: {} },
   weather: [],
   graphData: []
 }

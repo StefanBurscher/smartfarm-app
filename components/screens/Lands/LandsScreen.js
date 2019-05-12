@@ -41,22 +41,22 @@ export default class LandsScreen extends React.Component {
       >
         <View style={{ flex: 1 }}>
           <Image
-            style={{ flex: 1, overflow: 'hidden', height: 150 }}
+            style={{ flex: 1, overflow: 'hidden', height: 220 }}
             resizeMode="cover"
             source={{ uri: data.image }}
           />
         </View>
         <View>
           <View style={{ padding: 12 }}>
-            <MyText type="H3" margin={'0 0 0 5'}>
+            <MyText type="H3" align='center' margin={'0 0 0 5'}>
               {data.name}
             </MyText>
             <Separator margin="20 0 20 0" />
             <View style={{ flexDirection: 'row', flex: 1 }}>
               <View style={{ flex: 1, alignItems: 'center' }}>
-                <TabBarIcon name="ios-refresh" />
+                <TabBarIcon name="ios-paper-plane" />
                 <MyText type="H5" margin={'0 0 0 5'}>
-                  Report
+                  Scan Field
                 </MyText>
               </View>
 

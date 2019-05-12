@@ -12,14 +12,10 @@ import Separator from '../../atoms/Separator/Separator'
 import STYLES from '../../../constants/STYLES'
 import TabBarIcon from '../../TabBarIcon'
 
-const data = {
-  id: 1,
-  image: 'http://www.ekapija.com/thumbs/njiva_traktor_131216_tw630.jpg',
-  name: 'Njiva 1',
-}
-
 @connect(
-  () => ({}),
+  state => ({
+    landDetails: state.lands.landDetails,
+  }),
   dispatch => ({ actions: bindActionCreators(appActions, dispatch) })
 )
 export default class LandsScreen extends React.Component {
@@ -27,36 +23,61 @@ export default class LandsScreen extends React.Component {
     title: 'Lands',
   })
 
-  renderLandsList = () => (
-    <Card
-      padding="0 0 0 0"
-      onClick={() => {
-        this.navigateTo('Lands', { id: data.id })
-      }}
-    >
-      <View style={{ flexDirection: 'row' }}>
+  componentDidMount() {
+    const { actions, navigation } = this.props
+    const landID = navigation.getParam('landID')
+    actions.getLandDetails(landID)
+  }
+
+  renderLandsList = () => {
+    const { actions } = this.props
+    const data = this.props.landDetails
+    return (
+      <Card
+        padding="0 0 0 0"
+        onClick={() => {
+          this.navigateTo('Lands', { id: data.id })
+        }}
+      >
         <View style={{ flex: 1 }}>
           <Image
-            style={{ flex: 1, overflow: 'hidden' }}
+            style={{ flex: 1, overflow: 'hidden', height: 150 }}
             resizeMode="cover"
             source={{ uri: data.image }}
           />
         </View>
-        <View style={{ flex: 1, padding: 12 }}>
-          <MyText type="H3" margin={'0 0 0 5'}>
-            {data.name}
-          </MyText>
-          <Separator margin="20 0 20 0" />
-          <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-            <TabBarIcon name='ios-refresh' />
-            <MyText type="H5" margin={'0 0 0 5'}>
-              Request a report
+        <View>
+          <View style={{ padding: 12 }}>
+            <MyText type="H3" margin={'0 0 0 5'}>
+              {data.name}
             </MyText>
+            <Separator margin="20 0 20 0" />
+            <View style={{ flexDirection: 'row', flex: 1 }}>
+              <View style={{ flex: 1, alignItems: 'center' }}>
+                <TabBarIcon name="ios-refresh" />
+                <MyText type="H5" margin={'0 0 0 5'}>
+                  Report
+                </MyText>
+              </View>
+
+              <Separator vertical />
+              <TouchableOpacity
+                onPress={() => {
+                  actions.navigateTo('Analytics')
+                }}
+                style={{ flex: 1, alignItems: 'center' }}
+              >
+                <TabBarIcon name="ios-analytics" />
+                <MyText type="H5" margin={'0 0 0 5'}>
+                  Analytics
+                </MyText>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
-      </View>
-    </Card>
-  )
+      </Card>
+    )
+  }
 
   getStatusByType = status => {
     switch (status) {
@@ -84,18 +105,13 @@ export default class LandsScreen extends React.Component {
   render() {
     const { actions } = this.props
     const LandList = this.renderLandsList
-    const transactionsDisplay = [
-      { id: '1', name: 'report 1', status: 'pending', date: '11.5.2019' },
-      { id: '2', name: 'report 2', status: 'healthy', date: '8.5.2019' },
-      { id: '3', name: 'report 3', status: 'diseased', date: '4.5.2019' },
-    ]
     return (
       <RegularLayout>
         <>
           <LandList />
           <Separator margin="20 0 20 0" text="Report history" />
           <FlatList
-            data={transactionsDisplay}
+            data={this.props.landDetails.reports}
             renderItem={({ item }) => {
               const time = moment(item.date).isSame(moment(), 'day')
                 ? moment(item.date, 'DD.MM.YYYY').format('HH:mm')
@@ -104,7 +120,7 @@ export default class LandsScreen extends React.Component {
               return (
                 <TouchableOpacity
                   onPress={() =>
-                    actions.navigateTo('ReportDetails', { id: item.id })
+                    actions.navigateTo('ReportDetails', { reportID: item.id })
                   }
                 >
                   <View style={{ flexDirection: 'row' }}>

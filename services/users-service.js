@@ -1,5 +1,3 @@
-// TODO(fj): split into auth service and profile service?
-
 import axios from 'axios'
 import apiUrl from './api-url'
 

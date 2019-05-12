@@ -8,12 +8,12 @@ import {
 
 import TabBarIcon from '../components/TabBarIcon'
 import HomeScreen from '../components/screens/Home/HomeScreen'
-import LinksScreen from '../components/screens/LinksScreen'
 import { defaultNavigationOptions, transitionConfig } from './navigationConfig'
 import STYLES from '../constants/STYLES'
-import CameraScreen from '../components/screens/CameraScreen/CameraScreen';
-import LandsScreen from '../components/screens/Lands/LandsScreen';
-import ReportDetails from '../components/screens/ReportDetails/ReportDetails';
+import CameraScreen from '../components/screens/CameraScreen/CameraScreen'
+import LandsScreen from '../components/screens/Lands/LandsScreen'
+import ReportDetails from '../components/screens/ReportDetails/ReportDetails'
+import Analytics from '../components/screens/Analytics/Analytics'
 
 const TabBarComponent = props => <BottomTabBar {...props} />
 
@@ -21,7 +21,8 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Lands: LandsScreen,
-    ReportDetails: ReportDetails
+    ReportDetails: ReportDetails,
+    Analytics: Analytics
   },
   {
     defaultNavigationOptions: {
@@ -41,28 +42,6 @@ HomeStack.navigationOptions = {
   )
 }
 
-const LinksStack = createStackNavigator(
-  {
-    Links: LinksScreen
-  },
-  {
-    defaultNavigationOptions: {
-      ...defaultNavigationOptions
-    },
-    transitionConfig
-  }
-)
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Analitycs',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-analytics' : 'md-analytics'}
-    />
-  )
-}
-
 const CameraStack = createStackNavigator(
   {
     Camera: CameraScreen
@@ -75,20 +54,30 @@ const CameraStack = createStackNavigator(
   }
 )
 
-CameraStack.navigationOptions = {
-  tabBarLabel: 'Disease check',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-camera' : 'md-camera'}
-    />
-  )
+CameraStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true
+
+  let routeName = navigation.state.routes[navigation.state.index].routeName
+
+  if (routeName == 'Camera') {
+    tabBarVisible = false
+  }
+
+  return {
+    tabBarVisible,
+    tabBarLabel: 'Disease check',
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={Platform.OS === 'ios' ? 'ios-camera' : 'md-camera'}
+      />
+    )
+  }
 }
 
 export default createBottomTabNavigator(
   {
     HomeStack,
-    LinksStack,
     CameraStack
   },
   {
@@ -101,7 +90,12 @@ export default createBottomTabNavigator(
         // TabBar background
         borderColor: 'red'
       }
-    }
+    },
+
+    defaultNavigationOptions: {
+      ...defaultNavigationOptions
+    },
+    transitionConfig
   }
 )
 

@@ -18,6 +18,7 @@ import STYLES from '../../../constants/STYLES'
 import API from '../../../constants/API'
 import MyText from '../../atoms/MyText/MyText'
 import TabBarIcon from '../../TabBarIcon'
+import MyButton from '../../atoms/MyButton/MyButton'
 
 const { height, width } = Dimensions.get('window')
 
@@ -54,8 +55,8 @@ class CameraScreen extends Component {
   }
 
   static navigationOptions = () => ({
-    headerSameColor: false,
-    transparent: true
+    title: 'Camera',
+    customBack: 'Home'
   })
 
   static defaultProps = {
@@ -119,12 +120,10 @@ class CameraScreen extends Component {
 
   pickImage = async () => {
     const { actions, mask, navigation } = this.props
-    console.log('mask', mask)
     const result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       aspect: [STYLES.imageSizes[mask].width, STYLES.imageSizes[mask].height]
     })
-    console.log('result', result)
     if (result.cancelled) {
       return
     }
@@ -208,12 +207,15 @@ class CameraScreen extends Component {
               padding: 16
             }}
           >
-            <TouchableOpacity style={{ flex: 1 }} onPress={this.pickImage}>
+            <TouchableOpacity
+              style={{ flex: 1, alignItems: 'center' }}
+              onPress={this.pickImage}
+            >
               {cameraRollLastPhoto && (
                 <Image
                   source={{ uri: cameraRollLastPhoto.node.image.uri }}
                   resizeMode='cover'
-                  style={{ width: 50, height: 50 }}
+                  style={{ width: 40, height: 40 }}
                 />
               )}
             </TouchableOpacity>
@@ -222,7 +224,7 @@ class CameraScreen extends Component {
               style={{ flex: 1, alignItems: 'center' }}
               onPress={this.takePhoto}
             >
-              <TabBarIcon name={`ios-camera`} />
+              <TabBarIcon name={`ios-camera`} size={50} />
             </TouchableOpacity>
             <TouchableOpacity
               style={{ flex: 1, alignItems: 'center' }}
@@ -230,7 +232,7 @@ class CameraScreen extends Component {
                 this.setState({ ratio: '4:3' }, actions.flipCamera)
               }}
             >
-              <TabBarIcon name={`ios-swap`} />
+              <TabBarIcon name={`ios-repeat`} size={40} />
             </TouchableOpacity>
           </View>
         </SafeAreaView>

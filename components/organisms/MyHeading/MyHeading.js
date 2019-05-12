@@ -15,8 +15,21 @@ import { bindActionCreators } from 'redux'
 )
 class MyHeading extends Component {
   getLeftContent = sceneProps => {
-    const { hideBack } = sceneProps
+    const { hideBack, customBack } = sceneProps
     const { actions, scenes } = this.props
+    if (customBack) {
+      return (
+        <MyButton
+          basic
+          onPress={() => {
+            actions.navigateTo(customBack)
+          }}
+        >
+          Back
+        </MyButton>
+      )
+    }
+
     const backScreenName = scenes[this.props.index - 1]
       ? scenes[this.props.index - 1].route.routeName
       : ''
@@ -76,11 +89,7 @@ class MyHeading extends Component {
         {customCenterComponent ? (
           <Fragment>{customCenterComponent}</Fragment>
         ) : (
-          <MyText
-            style={style.headerTitle}
-            align='center'
-            type='H3'
-          >
+          <MyText style={style.headerTitle} align='center' type='H3'>
             {title || ''}
           </MyText>
         )}

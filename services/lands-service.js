@@ -24,32 +24,87 @@ const lands = [
   {
     id: 1,
     image: 'https://i.imgur.com/Tg4DTku.png',
-    name: 'Trava',
-    location: 'Golubinci'
+    name: 'Vojvodina Grape',
+    location: 'Čurug'
   },
   {
     id: 2,
     image: 'https://i.imgur.com/fjsGKxe.png',
-    name: 'Zito 1',
+    name: 'Shamrock paradise',
     location: 'Golubinci'
   },
   {
     id: 3,
     image: 'https://i.imgur.com/hCKUHDK.png',
-    name: 'Zito 2',
-    location: 'Golubinci'
+    name: 'Corn Field',
+    location: 'Ševica'
   }
 ]
 
 const reports = [
-  { id: 1, name: 'report 1', status: 'pending', date: '11.5.2019' },
-  { id: 2, name: 'report 2', status: 'healthy', date: '8.5.2019' },
-  { id: 3, name: 'report 3', status: 'diseased', date: '4.5.2019' }
+  {
+    id: 1,
+    name: 'Report 2',
+    status: 'pending',
+    date: '11.5.2019',
+    image: 'https://i.imgur.com/fjsGKxe.png'
+  },
+  {
+    id: 2,
+    name: 'Report 1',
+    status: 'healthy',
+    date: '8.4.2019',
+    image: 'https://i.imgur.com/Tg4DTku.png'
+  },
+  {
+    id: 3,
+    name: 'Report 1',
+    status: 'diseased',
+    date: '4.5.2019',
+    image: 'https://i.imgur.com/1Na4bMi.png',
+    disease: 'Bacterial spot',
+    recommendations: [
+      {
+        level: 1,
+        message:
+          'Apply sulfur sprays or copper-based weekly to prevent its spread.'
+      }
+    ]
+  },
+  {
+    id: 4,
+    name: 'Report 1',
+    status: 'diseased',
+    date: '7.5.2019',
+    image: 'https://i.imgur.com/Qd0ys9q.png',
+    disease: 'Early Blight',
+    recommendations: [
+      {
+        level: 1,
+        message:
+          'Apply copper-based fungicides every 7-10 days for as long as needed.'
+      }
+    ]
+  },
+  {
+    id: 5,
+    name: 'Report 2',
+    status: 'diseased',
+    date: '9.5.2019',
+    image: 'https://i.imgur.com/9uGqbka.png',
+    disease: 'Leaf Mold',
+    recommendations: [
+      {
+        level: 1,
+        message: 'Apply a fungacide spray weekly.'
+      }
+    ]
+  }
 ]
 
 const land_reports = [
-  { landID: 1, reports: [1, 2] },
-  { landID: 2, reports: [2, 3] },
+  { landID: 1, reports: [5, 2] },
+  { landID: 2, reports: [1, 4] },
   { landID: 3, reports: [3] }
 ]
 

@@ -38,8 +38,8 @@ export default class HomeScreen extends React.Component {
         }}
       >
         <TabBarIcon focused name={'ios-add'} />
-        <MyText type="H5" margin={'0 0 0 5'}>
-          Add lands
+        <MyText type="H5" margin={'0 0 0 0'}>
+        {' '}Add lands
         </MyText>
       </TouchableOpacity>
     )
@@ -63,10 +63,11 @@ export default class HomeScreen extends React.Component {
             />
           </View>
           <View style={{ flex: 1, padding: 12, justifyContent: 'center' }}>
-            <MyText type="H3" margin={'0 0 0 5'}>
+            <MyText type="H3" margin={'0 0 0 0'}>
               {land.name}
             </MyText>
-            <MyText type="H6" margin={'0 0 0 5'}>
+            <MyText type="H6" margin={'10 0 0 0'}>
+              <TabBarIcon name="ios-pin" size={18} />{'  '}
               {land.location}
             </MyText>
           </View>

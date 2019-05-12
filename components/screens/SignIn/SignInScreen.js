@@ -59,6 +59,7 @@ class SignInScreen extends React.Component {
           field='password'
           placeholder='Password'
           autoCapitalize='none'
+          secureTextEntry={true}
           value={formData.password}
           refs={input => {
             this.pass = input

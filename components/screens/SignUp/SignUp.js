@@ -22,7 +22,7 @@ import { KEYBOARD_TYPE } from '../../../constants/UI'
 class SignUpScreen extends React.Component {
   static navigationOptions = () => ({
     headerSameColor: true,
-    right: 'signup'
+    right: 'login'
   })
   render () {
     const { formData, callsInProgress, actions } = this.props
@@ -33,7 +33,7 @@ class SignUpScreen extends React.Component {
     return (
       <RegularLayout>
         <MyText margin='0 0 30 0' align='center' type='H1'>
-          Welcome back
+          Join Us
         </MyText>
         <MyInput
           type='text'
@@ -53,6 +53,7 @@ class SignUpScreen extends React.Component {
           field='password'
           placeholder='Password'
           autoCapitalize='none'
+          secureTextEntry
           value={formData.password}
           refs={input => {
             this.pass = input

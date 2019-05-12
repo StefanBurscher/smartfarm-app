@@ -48,14 +48,14 @@ export default class LandsScreen extends React.Component {
         </View>
         <View>
           <View style={{ padding: 12 }}>
-            <MyText type="H3" align='center' margin={'0 0 0 5'}>
+            <MyText type="H3" align='center' margin={'0 0 0 0'}>
               {data.name}
             </MyText>
             <Separator margin="20 0 20 0" />
             <View style={{ flexDirection: 'row', flex: 1 }}>
               <View style={{ flex: 1, alignItems: 'center' }}>
                 <TabBarIcon name="ios-paper-plane" />
-                <MyText type="H5" margin={'0 0 0 5'}>
+                <MyText type="H5" margin={'0 0 0 0'}>
                   Scan Field
                 </MyText>
               </View>
@@ -68,7 +68,7 @@ export default class LandsScreen extends React.Component {
                 style={{ flex: 1, alignItems: 'center' }}
               >
                 <TabBarIcon name="ios-analytics" />
-                <MyText type="H5" margin={'0 0 0 5'}>
+                <MyText type="H5" margin={'0 0 0 0'}>
                   Analytics
                 </MyText>
               </TouchableOpacity>

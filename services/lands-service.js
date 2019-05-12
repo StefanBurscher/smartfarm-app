@@ -9,6 +9,7 @@ const landsService = {
   getWeather,
   getGraph,
   uploadImage,
+  getRainGraph,
   kure
 }
 
@@ -157,6 +158,19 @@ function getWeather () {
 function getGraph () {
   return axios.get(
     'https://samples.agromonitoring.com/agro/1.0/ndvi/history?polyid=' +
+      POLYGON_ID +
+      '&start=' +
+      START_TIME +
+      '&end=' +
+      END_TIME +
+      '&appid=' +
+      APP_ID
+  )
+}
+
+function getRainGraph () {
+  return axios.get(
+    'https://samples.openweathermap.org/agro/1.0/soil/history?polyid=' +
       POLYGON_ID +
       '&start=' +
       START_TIME +

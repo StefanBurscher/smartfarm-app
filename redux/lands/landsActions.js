@@ -1,6 +1,7 @@
 import ACTIONS from '../../constants/ACTIONS'
 import landsService from '../../services/lands-service'
 import API from '../../constants/API'
+import { Alert } from 'react-native'
 
 export {
   getAllLands,
@@ -8,6 +9,7 @@ export {
   getReportDetails,
   getWeather,
   getGraph,
+  getRainGraph,
   uploadImage
 }
 
@@ -76,12 +78,26 @@ function getGraph () {
   }
 }
 
+function getRainGraph () {
+  return async (dispatch, getState) => {
+    try {
+      const res = await landsService.getRainGraph()
+      dispatch({
+        type: ACTIONS.GET_RAIN_GRAPH,
+        callName: API.GET_RAIN_GRAPH,
+        data: res.data
+      })
+    } catch (err) {}
+  }
+}
+
 function uploadImage (photo) {
   return async (dispatch, getState) => {
     try {
       const res = await landsService.uploadImage(photo)
       // console.log('res', JSON.stringify(res.data))
-      alert(res.data.replace(new RegExp('_', 'g'), ' '))
+      Alert.alert('Report', res.data)
+      // alert(res.data.replace(new RegExp('_', 'g'), ' '))
       dispatch({
         type: ACTIONS.TAKE_CAMERA_PHOTO,
         callName: API.TAKE_CAMERA_PHOTO,

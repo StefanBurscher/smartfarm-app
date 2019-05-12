@@ -151,14 +151,14 @@ class CameraScreen extends Component {
             height: size.height
           }
         },
-        {
-          crop: {
-            originX: (size.width - STYLES.imageSizes[mask].width) / 2,
-            originY: (size.height - STYLES.imageSizes[mask].height) / 2,
-            width: STYLES.imageSizes[mask].width,
-            height: STYLES.imageSizes[mask].height
-          }
-        }
+        // {
+        //   crop: {
+        //     originX: (size.width - STYLES.imageSizes[mask].width) / 2,
+        //     originY: (size.height - STYLES.imageSizes[mask].height) / 2,
+        //     width: STYLES.imageSizes[mask].width,
+        //     height: STYLES.imageSizes[mask].height
+        //   }
+        // }
       ]
 
       if (cameraType === 'front') {

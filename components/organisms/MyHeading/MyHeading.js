@@ -73,7 +73,7 @@ class MyHeading extends Component {
         </MyButton>
       ),
       logout: (
-        <MyButton basic onPress={() => this.props.actions.logoutUser()}>
+        <MyButton basic onPress={() => this.props.actions.navigateTo('SignIn')}>
           Logout
         </MyButton>
       )

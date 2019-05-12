@@ -24,6 +24,12 @@ class SignUpScreen extends React.Component {
     headerSameColor: true,
     right: 'login'
   })
+
+  loginUser = () => {
+    const { actions } = this.props
+    actions.navigateTo('Home')
+  }
+
   render () {
     const { formData, callsInProgress, actions } = this.props
     const loginLoading = apiUtil.areCallsInProgress(

@@ -19,6 +19,7 @@ import TabBarIcon from '../../TabBarIcon'
 export default class HomeScreen extends React.Component {
   static navigationOptions = () => ({
     title: 'Lands',
+    right: 'logout',
   })
 
   componentDidMount() {
@@ -39,7 +40,8 @@ export default class HomeScreen extends React.Component {
       >
         <TabBarIcon focused name={'ios-add'} />
         <MyText type="H5" margin={'0 0 0 0'}>
-        {' '}Add lands
+          {' '}
+          Add lands
         </MyText>
       </TouchableOpacity>
     )
@@ -67,7 +69,8 @@ export default class HomeScreen extends React.Component {
               {land.name}
             </MyText>
             <MyText type="H6" margin={'10 0 0 0'}>
-              <TabBarIcon name="ios-pin" size={18} />{'  '}
+              <TabBarIcon name="ios-pin" size={18} />
+              {'  '}
               {land.location}
             </MyText>
           </View>

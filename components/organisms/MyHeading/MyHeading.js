@@ -66,7 +66,7 @@ class MyHeading extends Component {
         <MyButton
           basic
           onPress={() => {
-            this.props.actions.navigateTo('Login')
+            this.props.actions.navigateTo('SignIn')
           }}
         >
           Log in

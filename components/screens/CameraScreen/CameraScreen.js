@@ -127,10 +127,7 @@ class CameraScreen extends Component {
     if (result.cancelled) {
       return
     }
-    actions.navigateTo('ConfirmCamera', {
-      onSave: navigation.getParam('onSave')
-    })
-    actions.takeCameraPhoto(result)
+    actions.uploadImage(result)
   }
 
   takePhoto = async () => {
@@ -143,9 +140,7 @@ class CameraScreen extends Component {
       }
 
       actions.startApiCall(API.TAKE_CAMERA_PHOTO)
-      await actions.navigateTo('ConfirmCamera', {
-        onSave: navigation.getParam('onSave')
-      })
+
       const photo = await this.camera.takePictureAsync()
       const { size } = this.state
 
@@ -178,14 +173,14 @@ class CameraScreen extends Component {
         { compress: 0.95, format: 'jpg' }
       )
 
-      actions.takeCameraPhoto(resizedPhoto)
+      actions.uploadImage(resizedPhoto)
     } catch (err) {}
   }
 
   render () {
     const { cameraType, actions, cameraRollLastPhoto } = this.props
     const style = CameraScreenStyle
-    console.log('cameraRollLastPhoto', cameraRollLastPhoto)
+
     return (
       <Camera
         ref={ref => {

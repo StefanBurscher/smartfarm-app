@@ -4,7 +4,8 @@ const initialState = {
   allLands: [],
   landDetails: { reports: [] },
   reportDetails: {},
-  weather: []
+  weather: [],
+  graphData: []
 }
 
 export default function landsReducer (state = initialState, action) {
@@ -26,6 +27,8 @@ export default function landsReducer (state = initialState, action) {
       }
     case ACTIONS.GET_WEATHER:
       return { ...state, weather: action.data }
+    case ACTIONS.GET_GRAPH:
+      return { ...state, graphData: action.data }
     default:
       return { ...state }
   }

@@ -7,11 +7,18 @@ const landsService = {
   getLandDetails,
   getReportDetails,
   getWeather,
+  getGraph,
+  uploadImage,
   kure
 }
 
 const POLYGON_ID = '5cd6eff7d86170001b090bce'
 const APP_ID = 'c11c89ad50e72bd2654f0b7207ec6404'
+
+// Thursday, April 11, 2019 4:19:31 PM GMT+02:00 DST
+const START_TIME = '1554992371'
+// Saturday, May 11, 2019 4:19:31 PM GMT+02:00 DST
+const END_TIME = '1557584371'
 
 const lands = [
   {
@@ -79,12 +86,21 @@ function getWeather () {
   )
 }
 
+function getGraph () {
+  return axios.get(
+    'https://samples.agromonitoring.com/agro/1.0/ndvi/history?polyid=' +
+      POLYGON_ID +
+      '&start=' +
+      START_TIME +
+      '&end=' +
+      END_TIME +
+      '&appid=' +
+      APP_ID
+  )
+}
+
 async function kure () {
   // TODO
-  // Thursday, April 11, 2019 4:19:31 PM GMT+02:00 DST
-  const START_TIME = '1554992371'
-  // Saturday, May 11, 2019 4:19:31 PM GMT+02:00 DST
-  const END_TIME = '1557584371'
   const THRESHOLD = '184'
   console.log('EVCO kure')
 
@@ -221,6 +237,17 @@ async function kure () {
     APP_ID
   res = await axios.get(POLYGON_INFO_URL)
   console.log('POLYGON_INFO_URL', JSON.stringify(res.data))
+}
+
+function uploadImage (photo) {
+  const formData = new FormData()
+  formData.append('image', {
+    name: 'front.jpg',
+    type: 'image/jpg',
+    uri: photo.uri
+  })
+  console.log('photo.uri', photo.uri)
+  return axios.post()
 }
 
 export default landsService
